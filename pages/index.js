@@ -1,7 +1,12 @@
+import { RefreshIcon } from '@heroicons/react/outline'
 import Head from 'next/head'
 import Header from '../components/Header'
+import Nav from '../components/Nav'
+import Results from '../components/Results'
+import requests from '../utils/requests'
 
-export default function Home() {
+export default function Home(props) {
+  console.log(props)
   return (
     <div>
       <Head>
@@ -10,13 +15,67 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <h1>Welcome to tailwind css - Hulu</h1> */}
-      {/* header */}
       <Header />
+      <Nav />
+      <Results/>
 
-      {/* nav */}
-
-      {/* results */}
     </div>
   )
 }
+
+export async function getServerSideProps(context) {
+  const genre = context.query.genre;
+
+  const API_KEY =  process.env.API_KEY;
+
+  let url = null;
+
+  switch (genre) {
+    case "fetchTrending":
+      url = `https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}&language=en-US`;
+      break;
+    case "fetchTopRated" :
+      url = `https://api.themoviedb.org/3/movie/top_rated/?api_key=${API_KEY}&language=en-US`
+      break
+    case "fetchActionMovies" :
+      url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_gendre=28&language=en-US`
+      break
+    case "fetchComedyMovies" :
+      url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_gendre=35&language=en-US`
+      break
+    case "fetchHorrorMovies" :
+      url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_gendre=27`
+      break
+    case "fetchRomanceMovies" :
+      url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_gendre=10749`
+      break
+    case "fetchMystery" :
+      url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_gendre=9648`
+      break
+    case "fetchSciFi" :
+      url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_gendre=878`
+      break
+    case "fetchWestern" :
+      url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_gendre=37`
+      break
+    case "fetchAnimation" :
+      url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_gendre=16`
+      break
+    case "fetchTV" :
+      url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_gendre=10770`
+      break
+    default:
+      url = `https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}&language=en-US`;
+  }
+
+  // const request = await fetch(`https://api.themoviedb.org/3/${requests[genre]?.url || requests.fetchRomanceMovies.url}`) // <== use this if utils/requests.js file is working
+  const request = await fetch(url)
+  .then( (res) => res.json())
+
+  return {
+    props: {
+      results: request.results || null,
+    }
+  }
+}
+

@@ -6,8 +6,12 @@ module.exports = {
     extend: {},
   },
   variants: {
-    extend: {},
+    extend: {
+      animation: ['group-hover'],
+    },
     animation: ['responsive', 'motion-safe', 'motion-reduce']
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar-hide')
+  ],
 }
