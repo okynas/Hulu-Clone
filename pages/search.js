@@ -5,7 +5,7 @@ import Nav from '../components/Nav'
 import Results from '../components/Results'
 import requests from '../utils/requests'
 
-export default function Home({results}) {
+export default function Search({results}) {
   // console.log(results)
   return (
     <div>
@@ -16,27 +16,23 @@ export default function Home({results}) {
       </Head>
 
       <Header />
-      <Nav />
-      <Results results={results} />
+      {/* <Nav /> */}
+      {/* <Results results={results} /> */}
+      <p>SEARCH</p>
 
     </div>
   )
 }
 
-export async function getServerSideProps(context) {
-  const genre = context.query.genre;
+// export async function getServerSideProps(context) {
 
-  // console.log(genre)
+//   const request = await fetch(`${requests.BASE_URL}${requests.fetchTrending.url}`)
+//   .then( (res) => res.json())
 
-  const request = await fetch(`${requests.BASE_URL}${requests[genre]?.url || requests.fetchTrending.url}`)
-  .then( (res) => res.json())
-
-  // console.log(request)
-
-  return {
-    props: {
-      results: request.results || null,
-    }
-  }
-}
+//   return {
+//     props: {
+//       results: request.results || null,
+//     }
+//   }
+// }
 
