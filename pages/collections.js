@@ -17,22 +17,22 @@ export default function Collections({results}) {
 
       <Header />
       {/* <Nav /> */}
-      {/* <Results results={results} /> */}
-      <p>COLLECTIONS</p>
+      <Results results={results} />
+      {/* <p>COLLECTIONS</p> */}
 
     </div>
   )
 }
 
-// export async function getServerSideProps(context) {
+export async function getServerSideProps(context) {
 
-//   const request = await fetch(`${requests.BASE_URL}${requests.fetchTrending.url}`)
-//   .then( (res) => res.json())
+  const request = await fetch(`${requests.BASE_URL}${requests.fetchCollection.url}`)
+  .then( (res) => res.json())
 
-//   return {
-//     props: {
-//       results: request.results || null,
-//     }
-//   }
-// }
+  return {
+    props: {
+      results: request.results || null,
+    }
+  }
+}
 
