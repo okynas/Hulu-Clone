@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import Nav from '../components/Nav'
 import Results from '../components/Results'
 import requests from '../utils/requests'
+import SearchComponent from '../components/Search'
 
 export default function Search({results}) {
   // console.log(results)
@@ -18,6 +19,7 @@ export default function Search({results}) {
       <Header />
       {/* <Nav /> */}
       {/* <Results results={results} /> */}
+      <SearchComponent/>
       <p>SEARCH</p>
 
     </div>
