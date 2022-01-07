@@ -46,5 +46,12 @@ export default {
   fetchTV: {
     title: "TV Movie",
     url: `/discover/movie?api_key=${API_KEY}&with_genres=10770`
+  },
+
+  // COLLECTIONS
+
+  fetchCollection : {
+    title: "Collection Fetch",
+    url: `/search/collection?api_key=${API_KEY}&query=avenger`
   }
 }
