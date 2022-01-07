@@ -16,6 +16,7 @@ module.exports = {
     animation: ['responsive', 'motion-safe', 'motion-reduce']
   },
   plugins: [
-    require('tailwind-scrollbar-hide')
+    require('tailwind-scrollbar-hide'),
+    require('@tailwindcss/forms'),
   ],
 }

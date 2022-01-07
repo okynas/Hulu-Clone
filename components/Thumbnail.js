@@ -8,16 +8,14 @@ const Thumbnail = forwardRef( ({ result }, ref) => {
 
   const BASE_URL = 'https://image.tmdb.org/t/p/original';
 
-  // console.log(result)
-
   return (
     <div ref={ref} className="p-2 group cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50">
-      {/* <h1>Thumbnail</h1> */}
       <Image
         layout="responsive"
         height={1080}
         width={1920}
         src={`${BASE_URL}${result.backdrop_path || result.poster_path} ` || ` ${BASE_URL}${result.poster_path}`}
+        alt=""
       />
       <div className="p-2">
         <p className="truncate max-w-md">{result.overview}</p>
@@ -33,4 +31,5 @@ const Thumbnail = forwardRef( ({ result }, ref) => {
   )
 });
 
+Thumbnail.displayName = "Thumbnail"
 export default Thumbnail
