@@ -23,7 +23,7 @@ npm run start
 ## Run tests
 
 ```sh
-npm run test
+npm run cypress
 ```
 
 ## Author
